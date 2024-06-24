@@ -42,7 +42,7 @@
         <p>&copy; 2024 Finesse Skin Clinic. All rights reserved.</p>
     </footer>
     <script type="module">
-      import { TextBoxExtension } from '/extensions.js';
+      import { TextBoxExtension } from './extensions.js';
         (function(d, t) {
             var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
             v.onload = function() {
@@ -56,7 +56,7 @@
                 autostart: false,
                 allowDangerousHTML: true,
                 assistant: {
-                  stylesheet: '/chat-styles.css',
+                  stylesheet: './chat-styles.css',
                   extensions: [TextBoxExtension]
                 }
               }).then(() => {
