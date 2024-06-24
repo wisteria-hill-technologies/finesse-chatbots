@@ -1,0 +1,98 @@
+/* Fonts and Base Imports */
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&display=swap');
+
+
+ /* Message Styles */
+ .vfrc-system-response .vfrc-message {
+    font-size: 18px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    margin-bottom:8px !important;
+}
+.vfrc-system-response .vfrc-avatar {
+    width: 40px;
+    height: 40px;
+    align-self: center;
+}
+
+.vfrc-user-response .vfrc-message{
+    font-size: 18px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    margin-bottom:8px !important;   
+}
+
+.vfrc-button. {
+    background-color: rgb(238, 128, 110);
+}
+
+
+
+@media (min-width: 769px) {
+    /* General Background and Header Colors */
+    .vfrc-widget {
+        background-color: transparent;
+    }
+
+    .vfrc-widget--chat {
+        box-shadow: none;
+    }
+    .c-fikloo {
+        width: 420px;
+    }
+    .vfrc-chat--dialog {
+        -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        scrollbar-width: none;  /* Firefox */
+    }
+    .vfrc-chat--dialog::-webkit-scrollbar {
+        display: none;  /* Safari and Chrome */
+    }
+    
+    /* Header Styling */
+    .vfrc-header {
+        background-color: transparent;
+        box-shadow: none;
+    }
+    
+    .vfrc-header .vfrc-avatar {
+        display: contents;
+    }
+    
+    .vfrc-header--title {
+        display: hidden;
+    }
+    
+    .vfrc-icon {
+        color: rgb(238, 128, 110) !important;
+    }
+    
+    .vfrc-assistant-info--title, .vfrc-assistant-info--description {
+        background-color: transparent;
+    }
+    
+    .vfrc-chat--spacer {
+        flex-grow: inherit;
+    }
+    
+    /* Chat Area Styling */
+    .vfrc-chat {
+        background-color: transparent;
+    } 
+
+    
+    .vfrc-footer {
+        background: #9e9e9e33;
+    }
+    
+    /* Input Styles */
+    .vfrc-chat-input textarea, .vfrc-chat-input--button {
+    }
+    
+    /* Buttons and Launcher Styles */
+    .vfrc-button, .vfrc-launcher {
+    }
+    
+    /* Launcher Specific Styling */
+    .vfrc-launcher {
+    }
+}
+
+

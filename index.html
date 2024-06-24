@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finesse Skin Clinic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">Finesse Skin Clinic</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home" class="hero-section">
+            <h1>Welcome to Finesse Skin Clinic</h1>
+            <p>Your journey to better skin starts here.</p>
+        </section>
+        <section id="about">
+            <h2>About Us</h2>
+            <p>Learn more about our clinic and our team of experts.</p>
+        </section>
+        <section id="services">
+            <h2>Our Services</h2>
+            <p>Discover the range of treatments we offer to enhance your skin.</p>
+        </section>
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Get in touch with us for more information or to book an appointment.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Finesse Skin Clinic. All rights reserved.</p>
+    </footer>
+    <script type="module">
+      import { TextBoxExtension } from '/extensions.js';
+        (function(d, t) {
+            var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+            v.onload = function() {
+              window.voiceflow.chat.load({
+                verify: { projectID: '6659d8013ade591e8b3e9322' },
+                url: 'https://general-runtime.voiceflow.com',
+                versionID: 'development',
+                render: {
+                  mode: 'overlay',
+                },
+                autostart: false,
+                allowDangerousHTML: true,
+                assistant: {
+                  stylesheet: '/chat-styles.css',
+                  extensions: [TextBoxExtension]
+                }
+              }).then(() => {
+                window.voiceflow.chat.proactive
+                  .push({ type: 'text', payload: { message: 'Feel free to ask any questions' } });
+              });
+            }
+            v.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
+            v.type = "text/javascript";
+            s.parentNode.insertBefore(v, s);
+        })(document, 'script');
+      </script>
+</body>
+</html>
+
+
