@@ -43,6 +43,13 @@
     </footer>
     <script type="module">
         (function(d, t) {
+            window.addEventListener('message', (event) => {
+                const message = event.data;
+                if (message.action === 'navigate' && message.page_path) {
+                    window.location.pathname = message.page_path;
+                }
+            });
+            
             const TextBoxExtension = {
                 name: 'Textbox',
                 type: 'response',
@@ -76,7 +83,7 @@
                     const container = document.createElement('p');
                     if(window.location.pathname !== page_path) {
                         container.innerText = "Sure, let me take you to the " + page_name + " page."
-                        parent.postMessage({ action: 'navigate', page_name: page_name, page_path: page_path }, '${process.env.NEXT_PUBLIC_VF_PARENT_HOST || '*'}');
+                        parent.postMessage({ action: 'navigate', page_name: page_name, page_path: page_path }, 'https://finesseskinclinic.co.uk');
                     } else {
                         container.innerText = "You can find information from this page.";
                     }
@@ -96,7 +103,7 @@
                 autostart: false,
                 allowDangerousHTML: true,
                 assistant: {
-                  stylesheet: './chat-styles.css',
+                  stylesheet: '/wp-content/chat-styles.css',
                   extensions: [TextBoxExtension, PageRoutingExtension]
                 }
               }).then(() => {
