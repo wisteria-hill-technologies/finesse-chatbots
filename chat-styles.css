@@ -72,6 +72,11 @@
     background-color: #D7B5B1 !important;;
 }
 
+.vfrc-launcher > img {
+    width: 56px !important;
+    height: 56px !important;
+}
+
 /* outline buttons in chatbox */
 .vfrc-button--secondary {
     border: 2px solid #5A5A5A;

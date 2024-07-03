@@ -42,14 +42,54 @@
         <p>&copy; 2024 Finesse Skin Clinic. All rights reserved.</p>
     </footer>
     <script type="module">
-      import { TextBoxExtension } from './extensions.js';
         (function(d, t) {
+            const TextBoxExtension = {
+                name: 'Textbox',
+                type: 'response',
+                match: ({ trace }) =>
+                        trace.type === 'ext_textbox' || trace.payload.name === 'ext_textbox',
+                render: ({ trace, element }) => {
+                    const { address, google_map_url, email, phone, mobile } = trace.payload || {};
+
+                    const container = document.createElement('div');
+                    container.innerHTML = `
+                    <div style="padding:10px 0;">
+                        <h3 style="margin:0 0 10px;">Some company</h3>
+                        <p style="margin:10px 0;">Address: ${address} <a href="${google_map_url}" target="_blank">(map)</a></p>
+                        <p style="margin:10px 0;">Email: <a href="mailto:${email}" target="_blank">${email}</a></p>
+                        <p style="margin:10px 0;">Phone: <a href="tel:${phone}" target="_blank">${phone}</a></p>
+                        <p style="margin:10px 0;">Mobile: <a href="tel:${mobile}" target="_blank">${mobile}</a></p>
+                    </div>
+                    `
+
+                    element.appendChild(container)
+                },
+            };
+
+            const PageRoutingExtension = {
+                name: 'PageRouting',
+                type: 'response',
+                match: ({ trace }) =>
+                        trace.type === 'ext_pagerouting' || trace.payload.name === 'ext_pagerouting',
+                render: ({ trace, element }) => {
+                    const { page_name, page_path } = trace.payload || {};
+                    const container = document.createElement('p');
+                    if(window.location.pathname !== page_path) {
+                        container.innerText = "Sure, let me take you to the " + page_name + " page."
+                        parent.postMessage({ action: 'navigate', page_name: page_name, page_path: page_path }, '${process.env.NEXT_PUBLIC_VF_PARENT_HOST || '*'}');
+                    } else {
+                        container.innerText = "You can find information from this page.";
+                    }
+                    element.appendChild(container);
+                }
+            };
+
             var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
             v.onload = function() {
               window.voiceflow.chat.load({
                 verify: { projectID: '6659d8013ade591e8b3e9322' },
                 url: 'https://general-runtime.voiceflow.com',
-                versionID: 'development',
+                versionID: 'production',
                 render: {
                   mode: 'overlay',
                 },
@@ -57,11 +97,16 @@
                 allowDangerousHTML: true,
                 assistant: {
                   stylesheet: './chat-styles.css',
-                  extensions: [TextBoxExtension]
+                  extensions: [TextBoxExtension, PageRoutingExtension]
                 }
               }).then(() => {
                 window.voiceflow.chat.proactive
                   .push({ type: 'text', payload: { message: 'Feel free to ask any questions' } });
+                const sessionStr = localStorage.getItem('voiceflow-session-6659d8013ade591e8b3e9322');
+                if (sessionStr) {
+                  const session = JSON.parse(sessionStr);
+                  if (session.status === 'ACTIVE') window.voiceflow.chat.open();
+                }
               });
             }
             v.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
